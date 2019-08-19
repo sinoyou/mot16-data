@@ -59,15 +59,25 @@ if __name__ == '__main__':
         squeeze_data = frame_squeeze(ori_data, dataset_fps)
         # get time dict and filter trajectory id whose length is over 2 secs
         time_dict = trajectory_length(squeeze_data, 10)
-        candidate_traj_list = [k for (k, v) in time_dict.items() if v > 2.0]
-        print('Length of Candidate Trajectory List:', len(candidate_traj_list))
+        candidate_traj_list = [k for (k, v) in time_dict.items() if v > 2]
+
+        # data analysis
+        max_ped_num_scene = 0
+        for frame in np.unique(squeeze_data[:, 0]):
+            objects_in_scene = squeeze_data[squeeze_data[:, 0] == frame, 1]
+            objects_list = [ped for ped in candidate_traj_list if ped in objects_in_scene]
+            max_ped_num_scene = max(max_ped_num_scene, len(objects_list))
+        print('Num of Candidate Trajectories:{}, Max pedestrians in one scene:{}'.format(len(candidate_traj_list),
+                                                                                         max_ped_num_scene))
+
+        # generate output data
         traj_list = []
         for traj in candidate_traj_list:
             traj_data = squeeze_data[squeeze_data[:, 1] == traj, :]
             # frame normalization
             normal_data = np.zeros((traj_data.shape[0], 6))
-            normal_data[:, 0] = traj_data[:, 0]             # frame id
-            normal_data[:, 1] = traj_data[:, 1]             # ped id
+            normal_data[:, 0] = traj_data[:, 0]  # frame id
+            normal_data[:, 1] = traj_data[:, 1]  # ped id
             normal_data[:, 2] = (traj_data[:, 2] + traj_data[:, 4] / 2) / dataset_pixel[0]  # box's center x
             normal_data[:, 3] = (traj_data[:, 3] + traj_data[:, 5] / 2) / dataset_pixel[1]  # box's center y
             normal_data[:, 4] = traj_data[:, 4] / dataset_pixel[0]  # box's scale x

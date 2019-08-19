@@ -3,15 +3,16 @@ import numpy as np
 import pandas as pd
 
 
-def trajectory_length(data, fps):
+def trajectory_length(data, fps, object_type=1):
     """
     Input dataset  and fps, return a dict with trajectory's id as key and trajectory's length as value.
     :param data : numpy array [N x 9]
     :param fps: frames per sec.
+    :param object_type: the kind to be considered
     :return: dictionary
     """
     # get person list
-    target_person_data = data[data[:, 7] == 1, :]
+    target_person_data = data[data[:, 7] == object_type, :]
     target_person_list = np.unique(target_person_data[:, 1]).tolist()
 
     # for each target person, calculate its time
