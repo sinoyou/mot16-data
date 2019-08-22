@@ -58,5 +58,5 @@ def scatter_frame_id(scene_path):
 
 
 if __name__ == '__main__':
-    path = 'MOT16-' + '11'  # 04,05,09,10,11,13
+    path = 'MOT16-' + '13'  # 04,05,09,10,11,13
     scatter_frame_id(path)

@@ -27,13 +27,14 @@ def trajectory_length(data, fps, object_type=1):
 
 
 if __name__ == '__main__':
-    dataset_dict = {'02': 30, '04': 30, '05': 14, '09': 30, '11': 30, '13': 25}
+    # dataset_dict = {'02': 30, '04': 30, '05': 14, '09': 30, '11': 30, '13': 25}
+    dataset_dict = {'02': 30, '04': 30, '09': 30, '10': 30, '11': 30, '13': 25}
     for dataset in dataset_dict.keys():
         path = 'MOT16-' + dataset
         dataset_path = os.path.join('data', 'MOT16Labels', 'train', path, 'gt', 'gt.txt')
 
         data = pd.read_csv(dataset_path).to_numpy()
         target_time_dict = trajectory_length(data, dataset_dict.get(dataset))
-        print('Overall Trajectory Number:', len(target_time_dict.keys()))
-        print('Trajectory Longer than 2 secs', len([item for item in target_time_dict.values() if item > 2.0]))
+        print(dataset, 'Overall Trajectory Number:', len(target_time_dict.keys()))
+        print(dataset, 'Trajectory Longer than 2 secs', len([item for item in target_time_dict.values() if item > 2.0]))
         print(target_time_dict)

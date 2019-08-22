@@ -80,8 +80,8 @@ if __name__ == '__main__':
             normal_data[:, 1] = traj_data[:, 1]  # ped id
             normal_data[:, 2] = (traj_data[:, 2] + traj_data[:, 4] / 2) / dataset_pixel[0]  # box's center x
             normal_data[:, 3] = (traj_data[:, 3] + traj_data[:, 5] / 2) / dataset_pixel[1]  # box's center y
-            normal_data[:, 4] = traj_data[:, 4] / dataset_pixel[0]  # box's scale x
-            normal_data[:, 5] = traj_data[:, 5] / dataset_pixel[1]  # box's scale y
+            normal_data[:, 4] = traj_data[:, 4] / dataset_pixel[0] / 2  # box's scale x
+            normal_data[:, 5] = traj_data[:, 5] / dataset_pixel[1] / 2  # box's scale y
             traj_list.append(normal_data)
         # save data
         dataset_processed = np.concatenate(traj_list, axis=0)
