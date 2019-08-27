@@ -29,13 +29,13 @@ def frame_squeeze(traj, dataset_fps):
 if __name__ == '__main__':
     print('Datasets info preparing')
     datasets_info = {}
-    datasets_info['MOT16-02'] = {'fps': 30, 'width': 1920, 'height': 1020}
-    datasets_info['MOT16-04'] = {'fps': 30, 'width': 1920, 'height': 1020}
+    datasets_info['MOT16-02'] = {'fps': 30, 'width': 1920, 'height': 1080}
+    datasets_info['MOT16-04'] = {'fps': 30, 'width': 1920, 'height': 1080}
     datasets_info['MOT16-05'] = {'fps': 14, 'width': 640, 'height': 480}
-    datasets_info['MOT16-09'] = {'fps': 30, 'width': 1920, 'height': 1020}
-    datasets_info['MOT16-10'] = {'fps': 30, 'width': 1920, 'height': 1020}
-    datasets_info['MOT16-11'] = {'fps': 30, 'width': 1920, 'height': 1020}
-    datasets_info['MOT16-13'] = {'fps': 25, 'width': 1920, 'height': 1020}
+    datasets_info['MOT16-09'] = {'fps': 30, 'width': 1920, 'height': 1080}
+    datasets_info['MOT16-10'] = {'fps': 30, 'width': 1920, 'height': 1080}
+    datasets_info['MOT16-11'] = {'fps': 30, 'width': 1920, 'height': 1080}
+    datasets_info['MOT16-13'] = {'fps': 25, 'width': 1920, 'height': 1080}
 
     print('Data Washer Working')
     # directory of data to be washed.
